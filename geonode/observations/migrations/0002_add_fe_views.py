@@ -384,6 +384,9 @@ WHERE
         db.execute("""INSERT INTO public.geometry_columns VALUES ('', 'gem',
                 'simple_fold_geom_view', 'simple_fold_geom', '2', 4326,
                 'MULTILINESTRING')""")
+                
+        db.execute("""INSERT INTO public.geometry_columns VALUES ('', 'gem',
+        'observations_faultsource', 'geom', '3', 4326, 'POLYGON')""")
 
 
     def backwards(self, orm):
