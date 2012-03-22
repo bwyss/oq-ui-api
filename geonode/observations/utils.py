@@ -155,7 +155,7 @@ def create_faultsource(fault, name):
     ))
 
     faultsource = models.FaultSource.objects.create(
-        fault=fault, source_nm=name, geom=polygon, **a
+        fault=fault, fault_name=name, geom=polygon, **a
     )
 
     return faultsource
