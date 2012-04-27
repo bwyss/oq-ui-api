@@ -39,4 +39,4 @@ class Geodetic(models.Model):
     x_azimuth = models.FloatField(null=True, blank=True)
     exx_psr = models.FloatField(null=True, blank=True)
     eyy_psr = models.FloatField(null=True, blank=True)
-    geom = models.PolygonField(srid=4326, dim=3)
+    geom = models.PointField(srid=4326, dim=2)
