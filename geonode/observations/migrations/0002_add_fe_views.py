@@ -366,7 +366,7 @@ WHERE
             'slip_r_min': ('django.db.models.fields.IntegerField', [], {}),
             'slip_r_pre': ('django.db.models.fields.IntegerField', [], {}),
             'slip_typ': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
-            'fault_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'source_nm': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'u_sm_d_com': ('django.db.models.fields.FloatField', [], {}),
             'u_sm_d_max': ('django.db.models.fields.FloatField', [], {}),
             'u_sm_d_min': ('django.db.models.fields.FloatField', [], {}),
@@ -427,8 +427,7 @@ WHERE
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'loc_meth': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'notes': ('django.db.models.fields.TextField', [], {}),
-            'scale': ('django.db.models.fields.BigIntegerField', [], {}),
-            'tid': ('django.db.models.fields.IntegerField', [], {})
+            'scale': ('django.db.models.fields.BigIntegerField', [], {})
         },
     }
 

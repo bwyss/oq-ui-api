@@ -1,4 +1,21 @@
 # encoding: utf-8
+
+# Copyright (c) 2010-2012, GEM Foundation.
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/agpl.html>.
+
+# encoding: utf-8
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
@@ -175,7 +192,6 @@ class Migration(SchemaMigration):
         # Adding model 'Trace'
         db.create_table('observations_trace', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('tid', self.gf('django.db.models.fields.IntegerField')()),
             ('loc_meth', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('scale', self.gf('django.db.models.fields.BigIntegerField')()),
             ('accuracy', self.gf('django.db.models.fields.BigIntegerField')()),
@@ -463,8 +479,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'loc_meth': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'notes': ('django.db.models.fields.TextField', [], {}),
-            'scale': ('django.db.models.fields.BigIntegerField', [], {}),
-            'tid': ('django.db.models.fields.IntegerField', [], {})
+            'scale': ('django.db.models.fields.BigIntegerField', [], {})
         }
     }
 
