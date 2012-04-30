@@ -91,6 +91,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfResponseMiddleware',
+    'jogging.middleware.LoggingMiddleware'
 )
 
 ROOT_URLCONF = 'geonode.urls'
@@ -133,6 +134,7 @@ INSTALLED_APPS = (
     'geonode.observations',
     'south',
     'django_schemata',
+    'jogging'
 )
 
 POSTGIS_VERSION = '1.5.3'
