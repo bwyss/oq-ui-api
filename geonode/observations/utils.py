@@ -23,11 +23,12 @@ import jpype
 import shapely
 from django.contrib.gis.geos.collections import Polygon
 from django.conf import settings
-from jogging import logging
-
+import logging 
 from geonode.observations import models
+log = logging.getLogger("observations.feeds.utils")
 
-logging.info("I'm an info message")
+log.info("Something happened")
+
 
 def fault_poly_from_mls(fault_source_geom, dip,
                         upp_seis_depth, low_seis_depth):
