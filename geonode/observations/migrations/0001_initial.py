@@ -178,7 +178,27 @@ class Migration(SchemaMigration):
             ('compiler', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
             ('contrib', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
             ('created', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
-        ))
+        # Displacement
+            ('slipType', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('hv_ratio', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('rake', self.gf('django.db.models.fields.IntegerField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('marker_age', self.gf('django.db.models.fields.IntegerField')(max_length=30, null=True, blank=True)),
+            ('slip_rate_category', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('site', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('displacement_notes', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+        )),
         db.send_create_signal('observations', ['FaultSection'])
 
         # Adding M2M table for field fault on 'FaultSection'
@@ -227,34 +247,6 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('observations_siteobservation_fault_section', ['siteobservation_id', 'faultsection_id'])
 
-        # Adding model 'Observations'
-        db.create_table('observations_observations', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('observationType', self.gf('django.db.models.fields.CharField')(max_length=1, blank=True)),
-            ('slipType', self.gf('django.db.models.fields.CharField')(max_length=2, blank=True)),
-            ('hv_ratio', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('rake', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('net_slip_rate_min', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('net_slip_rate_max', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('net_slip_rate_pref', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('dip_slip_rate_min', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('dip_slip_rate_max', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('dip_slip_rate_pref', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('marker_age', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('slip_rate_category', self.gf('django.db.models.fields.CharField')(max_length=10, blank=True)),
-            ('strike_slip_rate_min', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('strike_slip_rate_max', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('strike_slip_rate_pref', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('vertical_slip_rate_min', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('vertical_slip_rate_max', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('vertical_slip_rate_pref', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('site', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-            ('notes', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('summary_id', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
-        ))
-        db.send_create_signal('observations', ['Observations'])
-
-
     def backwards(self, orm):
         
         # Deleting model 'FaultSource'
@@ -280,9 +272,6 @@ class Migration(SchemaMigration):
 
         # Removing M2M table for field fault_section on 'SiteObservation'
         db.delete_table('observations_siteobservation_fault_section')
-
-        # Deleting model 'Observations'
-        db.delete_table('observations_observations')
 
 
     models = {
@@ -364,7 +353,7 @@ class Migration(SchemaMigration):
             'mov_max': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'mov_min': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'mov_pref': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            're_int_max': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            're_int_max': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
             're_int_min': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             're_int_pre': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'sec_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
@@ -378,7 +367,27 @@ class Migration(SchemaMigration):
             'u_sm_d_com': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'u_sm_d_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'u_sm_d_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'u_sm_d_pre': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'})
+            'u_sm_d_pre': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            #Disolacement
+            'slipType': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+            'hv_ratio': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+            'rake': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'net_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'net_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'net_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'dip_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'dip_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'dip_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'marker_age': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'slip_rate_category': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+            'strike_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'strike_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'strike_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'vertical_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'vertical_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'vertical_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'site': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+            'notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
         },
         'observations.faultsource': {
             'Meta': {'object_name': 'FaultSource'},
@@ -435,31 +444,6 @@ class Migration(SchemaMigration):
             'width_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'width_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'width_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'})
-        },
-        'observations.observations': {
-            'Meta': {'object_name': 'Observations'},
-            'dip_slip_rate_max': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'dip_slip_rate_min': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'dip_slip_rate_pref': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'hv_ratio': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'marker_age': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'net_slip_rate_max': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'net_slip_rate_min': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'net_slip_rate_pref': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'notes': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'observationType': ('django.db.models.fields.CharField', [], {'max_length': '1', 'blank': 'True'}),
-            'rake': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'site': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'slipType': ('django.db.models.fields.CharField', [], {'max_length': '2', 'blank': 'True'}),
-            'slip_rate_category': ('django.db.models.fields.CharField', [], {'max_length': '10', 'blank': 'True'}),
-            'strike_slip_rate_max': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'strike_slip_rate_min': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'strike_slip_rate_pref': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'summary_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'vertical_slip_rate_max': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'vertical_slip_rate_min': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-            'vertical_slip_rate_pref': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'})
         },
         'observations.siteobservation': {
             'Meta': {'object_name': 'SiteObservation'},
