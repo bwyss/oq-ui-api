@@ -217,6 +217,28 @@ class Migration(DataMigration):
             's_feature': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'scale': ('django.db.models.fields.BigIntegerField', [], {})
         },
+        'observations.displacement': {
+            'Meta': {'object_name': 'Dispalcement'},
+            'sliptype': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+               'hv_ratio': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+               'rake': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+               'net_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'net_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'net_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'dip_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'dip_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'dip_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'marker_age': ('django.db.models.fields.IntegerField', [], {}),
+               'slip_rate_category': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+               'strike_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'strike_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'strike_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'vertical_slip_rate_min': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'vertical_slip_rate_max': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'vertical_slip_rate_pref': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+               'site': ('django.db.models.fields.CharField', [], {'null': 'True', 'blank': 'True'}),
+               'displacement_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
+        },
         'observations.trace': {
             'Meta': {'object_name': 'Trace'},
             'accuracy': ('django.db.models.fields.BigIntegerField', [], {}),

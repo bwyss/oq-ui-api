@@ -188,6 +188,30 @@ class Migration(SchemaMigration):
             ('fault', models.ForeignKey(orm['observations.fault'], null=False))
         ))
         db.create_unique('observations_faultsection_fault', ['faultsection_id', 'fault_id'])
+        
+        # Adding model 'Displacement'
+        db.create_table('observations_displacement', (
+            ('sliptype', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('hv_ratio', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('rake', self.gf('django.db.models.fields.IntegerField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('net_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('dip_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('marker_age', self.gf('django.db.models.fields.IntegerField')(max_length=30, null=True, blank=True)),
+            ('slip_rate_category', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('strike_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_min', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_max', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('vertical_slip_rate_pref', self.gf('django.db.models.fields.FloatField')(max_length=30, null=True, blank=True)),
+            ('site', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('displacement_notes', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+        )),
+        db.send_create_signal('observations', ['Displacement'])
 
         # Adding model 'Trace'
         db.create_table('observations_trace', (
@@ -268,6 +292,9 @@ class Migration(SchemaMigration):
 
         # Removing M2M table for field fault on 'FaultSection'
         db.delete_table('observations_faultsection_fault')
+        
+        # Deleting model 'Displacement'
+        db.delete_table('observations_displacement')
 
         # Deleting model 'Trace'
         db.delete_table('observations_trace')
@@ -470,6 +497,28 @@ class Migration(SchemaMigration):
             'notes': ('django.db.models.fields.TextField', [], {}),
             's_feature': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'scale': ('django.db.models.fields.BigIntegerField', [], {})
+        },
+        'observations.displacement': {
+            'Meta': {'object_name': 'Displacement'},
+            'sliptype': ('django.db.models.fields.CharField', [], {}),
+            'hv_ratio': ('django.db.models.fields.CharField', [], {}),
+            'rake': ('django.db.models.fields.IntegerField', [], {}),
+            'net_slip_rate_min': ('django.db.models.fields.FloatField', [], {}),
+            'net_slip_rate_max': ('django.db.models.fields.FloatField', [], {}),
+            'net_slip_rate_pref': ('django.db.models.fields.FloatField', [], {}),
+            'dip_slip_rate_min': ('django.db.models.fields.FloatField', [], {}),
+            'dip_slip_rate_max': ('django.db.models.fields.FloatField', [], {}),
+            'dip_slip_rate_pref': ('django.db.models.fields.FloatField', [], {}),
+            'marker_age': ('django.db.models.fields.IntegerField', [], {}),
+            'slip_rate_category': ('django.db.models.fields.CharField', [], {}),
+            'strike_slip_rate_min': ('django.db.models.fields.FloatField', [], {}),
+            'strike_slip_rate_max': ('django.db.models.fields.FloatField', [], {}),
+            'strike_slip_rate_pref': ('django.db.models.fields.FloatField', [], {}),
+            'vertical_slip_rate_min': ('django.db.models.fields.FloatField', [], {}),
+            'vertical_slip_rate_max': ('django.db.models.fields.FloatField', [], {}),
+            'vertical_slip_rate_pref': ('django.db.models.fields.FloatField', [], {}),
+            'site': ('django.db.models.fields.CharField', [], {}),
+            'displacement_notes': ('django.db.models.fields.TextField', [], {})  
         },
         'observations.trace': {
             'Meta': {'object_name': 'Trace'},
